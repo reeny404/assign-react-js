@@ -1,16 +1,34 @@
+import { useState } from "react";
 import "./App.css";
+import Week1 from "./assignment/01/Week1";
+import Button from "./components/Button";
 
 function App() {
+  const array = new Array(16).fill(0).map((v, i) => i + 1);
+  const [activeAssignment, setActiveAssignment] = useState(location.pathname);
+
   return (
     <>
-      <h1>체크용 메인 페이지</h1>
-      {/* <Button text={"1주차"} href={"/week1/"} /> */}
+      <h1>과제 모아보기</h1>
+      <p style={{ fontSize: "0.8rem" }}>
+        ▽ 버튼 클릭 시, 해당 주차의 과제를 볼 수 있습니다 ▽
+      </p>
+      <div>
+        {array.map((v) => (
+          <Button
+            key={v}
+            text={v}
+            clickCallback={() => setActiveAssignment(`week${v}`)}
+          ></Button>
+        ))}
+      </div>
+      <hr></hr>
+      <div style={{ padding: "0 4rem" }}>
+        <>{activeAssignment === "week1" && <Week1 />}</>
+        <>{activeAssignment !== "week1" && "미진행 주차입니다."}</>
+      </div>
     </>
   );
-}
-
-function Button({ text, url }) {
-  return <Button onClick={() => (location.href = url)}>{text}</Button>;
 }
 
 export default App;
