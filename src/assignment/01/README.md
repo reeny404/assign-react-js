@@ -1,7 +1,8 @@
 ## 분리한 컴포넌트 목록
 - Button
 - Input
-- Todo
+- TodoItem
+- DoneItem
 - TodoList
 - DoneList
 - Lists 
