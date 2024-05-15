@@ -23,10 +23,8 @@ function App() {
         ))}
       </div>
       <hr></hr>
-      <div style={{ padding: "0 4rem" }}>
-        <>{activeAssignment === "week1" && <Week1 />}</>
-        <>{activeAssignment !== "week1" && "미진행 주차입니다."}</>
-      </div>
+      <>{activeAssignment === "week1" && <Week1 />}</>
+      <>{activeAssignment !== "week1" && "미진행 주차입니다."}</>
     </>
   );
 }

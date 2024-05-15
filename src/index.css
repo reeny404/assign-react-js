@@ -1,7 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap");
-
-:root {
-  font-family: "Nanum Gothic", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+body {
+  margin: 0;
+  padding: 0;
 }

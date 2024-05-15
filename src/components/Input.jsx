@@ -1,11 +1,14 @@
-function Input({ val, placeholder, changeValue }) {
+function Input({ val, label, changeValue }) {
   return (
-    <input
-      type="text"
-      value={val}
-      placeholder={placeholder}
-      onChange={(e) => changeValue(e.target.value)}
-    />
+    <>
+      <label>{label}</label>
+      <input
+        type="text"
+        value={val}
+        placeholder={label}
+        onChange={(e) => changeValue(e.target.value)}
+      />
+    </>
   );
 }
 

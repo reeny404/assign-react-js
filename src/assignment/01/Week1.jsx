@@ -19,6 +19,8 @@ function Week1() {
       return;
     }
     setList([...list, new Todo(title, desc)]);
+    setTitle("");
+    setDesc("");
   };
   const deleteItem = (id) => setList(list.filter((item) => item.id !== id));
   const toggleItem = (id) => {
@@ -40,8 +42,8 @@ function Week1() {
       <h2>(1) todo list</h2>
       <div className="contents">
         <div className="input-view">
-          <Input val={title} placeholder="제목" changeValue={setTitle} />
-          <Input val={desc} placeholder="설명" changeValue={setDesc} />
+          <Input val={title} label="제목" changeValue={setTitle} />
+          <Input val={desc} label="설명" changeValue={setDesc} />
           <button onClick={addItem}>추가</button>
         </div>
         <ListView list={list} deleteItem={deleteItem} toggleItem={toggleItem} />
