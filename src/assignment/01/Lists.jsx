@@ -1,7 +1,7 @@
 import DoneList from "./DoneList";
 import TodoList from "./TodoList";
 
-function ListView({ list, deleteItem, toggleItem }) {
+function Lists({ list, deleteItem, toggleItem }) {
   return (
     <div className="list-view">
       <TodoList
@@ -20,4 +20,4 @@ function ListView({ list, deleteItem, toggleItem }) {
   );
 }
 
-export default ListView;
+export default Lists;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Input from "../../components/Input";
-import ListView from "./ListView";
+import Lists from "./Lists";
 import { Todo } from "./Todo";
 import "./Week1.css";
 
@@ -46,7 +46,7 @@ function Week1() {
           <Input val={desc} label="설명" changeValue={setDesc} />
           <button onClick={addItem}>추가</button>
         </div>
-        <ListView list={list} deleteItem={deleteItem} toggleItem={toggleItem} />
+        <Lists list={list} deleteItem={deleteItem} toggleItem={toggleItem} />
       </div>
     </div>
   );
