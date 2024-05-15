@@ -32,7 +32,9 @@
       .items {
         display: flex;
         flex-direction: row;
-        gap: 5px 10px;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 5px;
 
         .item {
           padding: 1rem;
@@ -58,7 +60,6 @@
 
             border: none;
             border-radius: 3px;
-            /* outline: none; */
           }
         }
       }
