@@ -24,17 +24,11 @@ function Week1() {
   };
   const deleteItem = (id) => setList(list.filter((item) => item.id !== id));
   const toggleItem = (id) => {
-    setList([
-      ...list.map((item) => {
-        if (item.id !== id) {
-          return item;
-        }
-        const newItem = { ...item };
-        newItem.isDone = !newItem.isDone;
-
-        return newItem;
-      }),
-    ]);
+    setList(
+      list.map((item) =>
+        item.id !== id ? item : { ...item, isDone: !item.isDone }
+      )
+    );
   };
 
   return (
