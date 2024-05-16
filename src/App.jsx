@@ -1,11 +1,11 @@
 import { useState } from "react";
 import "./App.css";
-import Week1 from "./assignment/01/Week1";
-import Button from "./components/Button";
+import { Week1 } from "./assignment/01/Week1";
+import { Button } from "./components/Button";
 
 function App() {
   const array = new Array(16).fill(0).map((v, i) => i + 1);
-  const [activeAssignment, setActiveAssignment] = useState(location.pathname);
+  const [active, setActive] = useState(location.pathname);
 
   return (
     <>
@@ -18,13 +18,13 @@ function App() {
           <Button
             key={v}
             text={v}
-            clickCallback={() => setActiveAssignment(`week${v}`)}
+            callback={() => setActive(`week${v}`)}
           ></Button>
         ))}
       </div>
       <hr></hr>
-      <>{activeAssignment === "week1" && <Week1 />}</>
-      <>{activeAssignment !== "week1" && "미진행 주차입니다."}</>
+      <>{active === "week1" && <Week1 />}</>
+      <>{active !== "week1" && "미진행 주차입니다."}</>
     </>
   );
 }

@@ -1,35 +1,53 @@
-import Button from "../../components/Button";
+import { Button } from "../../components/Button";
+import { List } from "../../components/List";
+import { Title } from "../../components/Title";
 
-function TodoList({ title, list, deleteItem, toggleItem }) {
+export function TodoList({ list, deleteItem, toggleItem }) {
+  if (list.length === 0) return <></>;
+
+  const getButtons = (deleteText, toggleText) => [
+    { text: deleteText, callback: deleteItem },
+    { text: toggleText, callback: toggleItem },
+  ];
+
   return (
     <div className="list-view">
-      <h3>{title}</h3>
-      <div className="items">
-        {list.map((item, i) => (
-          <TodoItem
-            key={i}
-            item={item}
-            deleteItem={deleteItem}
-            toggleItem={toggleItem}
-          />
-        ))}
-      </div>
+      <Title Item="h3" text="Working.. 🔥" />
+      <List
+        list={list.filter((item) => !item.isDone)}
+        render={(item) => renderItem(item, getButtons("삭제", "완료"))}
+      />
+
+      <Title Item="h3" text="Done..! 🎉" />
+      <List
+        list={list.filter((item) => item.isDone)}
+        render={(item) => renderItem(item, getButtons("삭제", "취소"))}
+      />
     </div>
   );
 }
 
-function TodoItem({ item, deleteItem, toggleItem }) {
+function renderItem(item, buttons) {
   const { id, title, desc } = item;
   return (
-    <div className="item">
+    <div className="item" key={id}>
       <div>{title}</div>
       <div className="fontsizeSmall">{desc}</div>
-      <div>
-        <Button text="삭제" clickCallback={() => deleteItem(id)} />
-        <Button text="완료" clickCallback={() => toggleItem(id)} />
-      </div>
+      <div>{renderButtons(buttons, id)}</div>
     </div>
   );
 }
 
-export default TodoList;
+function renderButtons(btns, id) {
+  return (
+    <>
+      {btns.map((btn) => (
+        <Button
+          key={btn.text}
+          text={btn.text}
+          callback={() => btn.callback(id)}
+        />
+      ))}
+    </>
+  );
+}

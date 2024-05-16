@@ -1,4 +1,4 @@
-class Todo {
+export class Todo {
   constructor(title, desc, isDone = false) {
     this.id = Math.random();
     this.title = title;
@@ -6,5 +6,3 @@ class Todo {
     this.isDone = isDone;
   }
 }
-
-export { Todo };

@@ -1,10 +1,12 @@
 import { useState } from "react";
-import Input from "../../components/Input";
-import Lists from "./Lists";
+import { Button } from "../../components/Button";
+import { Input } from "../../components/Input";
+import { Title } from "../../components/Title";
 import { Todo } from "./Todo";
+import { TodoList } from "./TodoList";
 import "./Week1.css";
 
-function Week1() {
+export function Week1() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [list, setList] = useState([
@@ -33,17 +35,15 @@ function Week1() {
 
   return (
     <div id="Week1">
-      <h2>(1) todo list</h2>
+      <Title Item="h2" text="(1) todo list" />
       <div className="contents">
         <div className="input-view">
           <Input val={title} label="제목" changeValue={setTitle} />
           <Input val={desc} label="설명" changeValue={setDesc} />
-          <button onClick={addItem}>추가</button>
+          <Button text="추가" callback={addItem} />
         </div>
-        <Lists list={list} deleteItem={deleteItem} toggleItem={toggleItem} />
+        <TodoList list={list} deleteItem={deleteItem} toggleItem={toggleItem} />
       </div>
     </div>
   );
 }
-
-export default Week1;

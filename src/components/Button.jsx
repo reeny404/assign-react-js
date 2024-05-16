@@ -1,5 +1,3 @@
-function Button({ text, clickCallback }) {
-  return <button onClick={clickCallback}>{text}</button>;
+export function Button({ text, callback }) {
+  return <button onClick={callback}>{text}</button>;
 }
-
-export default Button;

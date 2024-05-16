@@ -1,4 +1,4 @@
-function Input({ val, label, changeValue }) {
+export function Input({ val, label, changeValue }) {
   return (
     <>
       <label>{label}</label>
@@ -11,5 +11,3 @@ function Input({ val, label, changeValue }) {
     </>
   );
 }
-
-export default Input;
