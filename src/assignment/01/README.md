@@ -1,6 +1,6 @@
 ## 분리한 컴포넌트 목록
 - /src/components
-  -  Button
+  - Button
   - Input
   - Title
   - List
