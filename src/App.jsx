@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-import { Week1 } from "./assignment/01/Week1";
+import { Week1 } from "./assignment/01-todolist/Week1";
+import { Week2 } from "./assignment/02-cashbook/Week2";
 import { Button } from "./components/Button";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
       </div>
       <hr></hr>
       <>{active === "week1" && <Week1 />}</>
+      <>{active === "week2" && <Week2 />}</>
       <>{active !== "week1" && "미진행 주차입니다."}</>
     </>
   );
