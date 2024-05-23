@@ -2,9 +2,13 @@ import { useState } from "react";
 import "./App.css";
 import { Week1 } from "./assignment/01-todolist/Week1";
 import { Week2 } from "./assignment/02-cashbook/Week2";
-import { Button } from "./components/Button";
 
-function App() {
+const ASSIGNMENT = {
+  1: <Week1 />,
+  2: <Week2 />,
+};
+
+export default function App() {
   const array = new Array(16).fill(0).map((v, i) => i + 1);
   const [active, setActive] = useState(location.pathname);
 
@@ -16,19 +20,13 @@ function App() {
       </p>
       <div>
         {array.map((v) => (
-          <Button
-            key={v}
-            text={v}
-            callback={() => setActive(`week${v}`)}
-          ></Button>
+          <button key={v} onClick={() => setActive(v)}>
+            {v}
+          </button>
         ))}
       </div>
-      <hr></hr>
-      <>{active === "week1" && <Week1 />}</>
-      <>{active === "week2" && <Week2 />}</>
-      <>{active !== "week1" && "미진행 주차입니다."}</>
+      <hr style={{ marginTop: "10px", marginBottom: "0" }}></hr>
+      <>{ASSIGNMENT[active] ?? "미진행 주차입니다."}</>
     </>
   );
 }
-
-export default App;

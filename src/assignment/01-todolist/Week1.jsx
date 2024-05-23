@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Button } from "../../components/Button";
-import { Input } from "../../components/Input";
-import { Title } from "../../components/Title";
 import { Todo } from "./Todo";
 import { TodoList } from "./TodoList";
 import "./Week1.css";
+import { Button } from "./components/Button";
+import { Input } from "./components/Input";
+import { Title } from "./components/Title";
 
 export function Week1() {
   const [title, setTitle] = useState("");

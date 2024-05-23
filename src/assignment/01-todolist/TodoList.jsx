@@ -1,6 +1,6 @@
-import { Button } from "../../components/Button";
-import { List } from "../../components/List";
-import { Title } from "../../components/Title";
+import { Button } from "./components/Button";
+import { List } from "./components/List";
+import { Title } from "./components/Title";
 
 export function TodoList({ list, deleteItem, toggleItem }) {
   if (list.length === 0) return <></>;
