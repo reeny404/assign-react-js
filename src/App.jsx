@@ -27,13 +27,7 @@ export default function App() {
           .fill(0)
           .map((v, i) => i + 1)
           .map((weekIndex) => (
-            <button
-              key={weekIndex}
-              onClick={() => {
-                console.log("weekIndex ::: " + weekIndex);
-                setActive(weekIndex);
-              }}
-            >
+            <button key={weekIndex} onClick={() => setActive(weekIndex)}>
               {weekIndex}
             </button>
           ))}
