@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 as UUID_v4 } from "uuid";
+import LocalStorage, { KEY } from "../../../utils/LocalStore";
 import { Input } from "../components/Input";
 import { Record } from "../components/Record";
 import {
@@ -15,7 +16,7 @@ export function HomePage({ records, handleAddRecord }) {
   const [item, setItem] = useState("");
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
-  const [month, setMonth] = useState(null);
+  const [month, setMonth] = useState(Number(LocalStorage.get(KEY._02_MONTH)));
 
   const handleSaveRecord = () => {
     if (!item || !amount) {
@@ -35,8 +36,14 @@ export function HomePage({ records, handleAddRecord }) {
     setDescription("");
   };
 
-  const clickMonth = (thisMonth) =>
-    setMonth(month === thisMonth ? null : thisMonth);
+  const clickMonth = (thisMonth) => {
+    const result = month === thisMonth ? null : thisMonth;
+    setMonth(result);
+  };
+
+  useEffect(() => {
+    LocalStorage.set(KEY._02_MONTH, month);
+  }, [month]);
 
   const list = month
     ? records.filter((record) => new Date(record.date).getMonth() + 1 === month)
