@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 import "./App.css";
 import { Week1 } from "./assignment/01-todolist/Week1";
 import { Week2 } from "./assignment/02-cashbook/Week2";
@@ -27,9 +28,13 @@ export default function App() {
           .fill(0)
           .map((v, i) => i + 1)
           .map((weekIndex) => (
-            <button key={weekIndex} onClick={() => setActive(weekIndex)}>
+            <StyledButton
+              key={weekIndex}
+              onClick={() => setActive(weekIndex)}
+              selected={active === weekIndex}
+            >
               {weekIndex}
-            </button>
+            </StyledButton>
           ))}
       </div>
       <hr style={{ marginTop: "10px", marginBottom: "0" }}></hr>
@@ -37,3 +42,7 @@ export default function App() {
     </>
   );
 }
+
+const StyledButton = styled.button`
+  ${(props) => (props.selected ? "background-color : grey" : "")}
+`;
