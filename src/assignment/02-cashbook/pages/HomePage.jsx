@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { v4 as UUID_v4 } from "uuid";
-import LocalStorage, { KEY } from "../../../utils/LocalStore";
+import LocalStorage, { KEY } from "../../../utils/LocalStorage";
 import { Input } from "../components/Input";
 import { Record } from "../components/Record";
 import {

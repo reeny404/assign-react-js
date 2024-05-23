@@ -1,4 +1,5 @@
 export const KEY = {
+  _00_ACTIVE_WEEK: "00-active-week",
   _02_MONTH: "02-cashbook-month",
 };
 
@@ -10,7 +11,7 @@ class LocalStorage {
   }
 
   get(key) {
-    this.#instance.getItem(key);
+    return this.#instance.getItem(key);
   }
 
   set(key, val) {
