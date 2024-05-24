@@ -11,16 +11,6 @@ export const SectionCashRecords = styled.section`
   background-color: #fff;
   border-radius: 10px;
   padding: 0.5rem 0;
-
-  ol {
-    margin: 0;
-    padding: 0;
-
-    > li {
-      list-style: none;
-      padding: 0.3rem 0.8rem;
-    }
-  }
 `;
 
 export const StyleButtonSelectingMonth = styled.button`

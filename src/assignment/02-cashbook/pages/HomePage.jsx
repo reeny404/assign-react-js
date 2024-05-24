@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { v4 as UUID_v4 } from "uuid";
 import LocalStorage, { KEY } from "../../../utils/LocalStorage";
 import { Input } from "../components/Input";
-import { Record } from "../components/Record";
+import { RecordList } from "../components/RecordList";
 import {
   HomePageWrppaer,
   SectionCashRecords,
@@ -45,10 +45,6 @@ export function HomePage({ records, handleAddRecord }) {
     LocalStorage.set(KEY._02_MONTH, month);
   }, [month]);
 
-  const list = month
-    ? records.filter((record) => new Date(record.date).getMonth() + 1 === month)
-    : records;
-
   return (
     <HomePageWrppaer>
       <SectionCreateCashRecord direction="row">
@@ -75,13 +71,7 @@ export function HomePage({ records, handleAddRecord }) {
         </div>
       </SectionSelectingMonth>
       <SectionCashRecords>
-        <ol>
-          {list.map((record) => (
-            <li key={record.id}>
-              <Record record={record} />
-            </li>
-          ))}
-        </ol>
+        <RecordList recods={records} month={month} />
       </SectionCashRecords>
     </HomePageWrppaer>
   );
