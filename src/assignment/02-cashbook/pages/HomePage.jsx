@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { v4 as UUID_v4 } from "uuid";
 import LocalStorage, { KEY } from "../../../utils/LocalStorage";
+import { RecordsContext } from "../Week2";
 import { Input } from "../components/Input";
 import { RecordList } from "../components/RecordList";
 import {
@@ -11,7 +12,9 @@ import {
   StyleButtonSelectingMonth,
 } from "./HomePage.styled";
 
-export function HomePage({ records, handleAddRecord }) {
+export function HomePage() {
+  const { records, setRecords } = useContext(RecordsContext);
+
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
   const [item, setItem] = useState("");
   const [amount, setAmount] = useState("");
@@ -23,13 +26,15 @@ export function HomePage({ records, handleAddRecord }) {
       alert("유효한 항목, 금액을 입력해주세요.");
       return;
     }
-    handleAddRecord({
+    // this.context.setRecords([...this.context.recrds, record]);
+    const newRecord = {
       id: UUID_v4(),
       date,
       item,
       amount,
       description,
-    });
+    };
+    setRecords([...records, newRecord]);
 
     setItem("");
     setAmount("");
@@ -47,7 +52,7 @@ export function HomePage({ records, handleAddRecord }) {
 
   return (
     <HomePageWrppaer>
-      <SectionCreateCashRecord direction="row">
+      <SectionCreateCashRecord>
         <Input label="날짜" value={date} setValue={setDate} type="date" />
         <Input label="항목" value={item} setValue={setItem} />
         <Input label="금액" value={amount} setValue={setAmount} type="number" />
@@ -71,7 +76,7 @@ export function HomePage({ records, handleAddRecord }) {
         </div>
       </SectionSelectingMonth>
       <SectionCashRecords>
-        <RecordList recods={records} month={month} />
+        <RecordList month={month} />
       </SectionCashRecords>
     </HomePageWrppaer>
   );

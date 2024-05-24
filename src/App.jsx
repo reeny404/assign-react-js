@@ -16,6 +16,7 @@ export default function App() {
   useEffect(() => {
     LocalStorage.set(KEY._00_ACTIVE_WEEK, active);
   }, [active]);
+  console.log(active);
 
   return (
     <>
@@ -24,18 +25,18 @@ export default function App() {
         ▽ 버튼 클릭 시, 해당 주차의 과제를 볼 수 있습니다 ▽
       </p>
       <div>
-        {new Array(16)
-          .fill(0)
-          .map((v, i) => i + 1)
-          .map((weekIndex) => (
+        {new Array(16).fill(0).map((_, i) => {
+          const month = i + 1;
+          return (
             <StyledButton
-              key={weekIndex}
-              onClick={() => setActive(weekIndex)}
-              selected={active === weekIndex}
+              key={month}
+              onClick={() => setActive(month)}
+              selected={+active == month}
             >
-              {weekIndex}
+              {month}
             </StyledButton>
-          ))}
+          );
+        })}
       </div>
       <hr style={{ marginTop: "10px", marginBottom: "0" }}></hr>
       <>{ASSIGNMENT[active] ?? "미진행 주차입니다."}</>

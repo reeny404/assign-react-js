@@ -1,10 +1,9 @@
-import { useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { createContext, useState } from "react";
+import { RouterProvider } from "react-router-dom";
 import styled from "styled-components";
 import InitialRecords from "./InitialRecords";
-import { DetailPage } from "./pages/DetailPage";
-import { HomePage } from "./pages/HomePage";
 import "./reset.css";
+import router from "./routes/router";
 
 const BodyWeek2 = styled.div`
   width: 100%;
@@ -14,24 +13,16 @@ const BodyWeek2 = styled.div`
   box-sizing: border-box;
 `;
 
+export const RecordsContext = createContext({});
+
 export function Week2() {
   const [records, setRecords] = useState(InitialRecords);
-  const handleAdd = (record) => setRecords([...records, record]);
 
   return (
     <BodyWeek2 id="Week2">
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/assign-react-js/"
-            element={<HomePage records={records} handleAddRecord={handleAdd} />}
-          />
-          <Route
-            path="/assign-react-js/detail/:recordId"
-            element={<DetailPage records={records} setRecords={setRecords} />}
-          />
-        </Routes>
-      </BrowserRouter>
+      <RecordsContext.Provider value={[records, setRecords]}>
+        <RouterProvider router={router} />
+      </RecordsContext.Provider>
     </BodyWeek2>
   );
 }

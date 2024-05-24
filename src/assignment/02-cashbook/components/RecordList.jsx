@@ -1,10 +1,14 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { RecordsContext } from "../Week2";
 import { Record } from "./Record";
 
-export function RecordList({ records, month }) {
+export function RecordList({ month }) {
+  const [records] = useContext(RecordsContext) ?? [];
   const list = month
     ? records.filter((record) => new Date(record.date).getMonth() + 1 === month)
     : records;
+
   return (
     <StyleList>
       {list.map((record) => (
