@@ -13,7 +13,7 @@ import {
 } from "./HomePage.styled";
 
 export function HomePage() {
-  const { records, setRecords } = useContext(RecordsContext);
+  const { records, addRecord } = useContext(RecordsContext);
 
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
   const [item, setItem] = useState("");
@@ -26,15 +26,17 @@ export function HomePage() {
       alert("유효한 항목, 금액을 입력해주세요.");
       return;
     }
-    // this.context.setRecords([...this.context.recrds, record]);
-    const newRecord = {
-      id: UUID_v4(),
-      date,
-      item,
-      amount,
-      description,
-    };
-    setRecords([...records, newRecord]);
+
+    addRecord([
+      ...records,
+      {
+        id: UUID_v4(),
+        date,
+        item,
+        amount,
+        description,
+      },
+    ]);
 
     setItem("");
     setAmount("");

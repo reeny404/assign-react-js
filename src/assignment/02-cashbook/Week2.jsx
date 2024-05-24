@@ -18,9 +18,27 @@ export const RecordsContext = createContext({});
 export function Week2() {
   const [records, setRecords] = useState(InitialRecords);
 
+  const addRecord = (record) => {
+    setRecords([...records, record]);
+  };
+
+  const updateRecord = (newRecord) => {
+    setRecords([
+      ...records.map((record) =>
+        record.id === newRecord.id ? newRecord : record
+      ),
+    ]);
+  };
+
+  const deleteRecord = (recordId) => {
+    setRecords([...records.filter((v) => v.id !== recordId)]);
+  };
+
   return (
     <BodyWeek2 id="Week2">
-      <RecordsContext.Provider value={[records, setRecords]}>
+      <RecordsContext.Provider
+        value={{ records, addRecord, updateRecord, deleteRecord }}
+      >
         <RouterProvider router={router} />
       </RecordsContext.Provider>
     </BodyWeek2>

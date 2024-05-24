@@ -1,39 +1,25 @@
 import { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { RecordsContext } from "../Week2";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 import { DetailPageWrapper } from "./DetailPage.styled";
-import { RecordsContext } from "../Week2";
 
 export function DetailPage() {
   const param = useParams();
-  const thisRecordId = param.recordId;
-  const { records, setRecords } = useContext(RecordsContext);
-  const thisRecord = records.find((data) => data.id === thisRecordId) ?? {};
+  const recordId = param.recordId;
+  const { records, updateRecord, deleteRecord } = useContext(RecordsContext);
+  const record = records.find((data) => data.id === recordId) ?? {};
 
-  const [date, setDate] = useState(thisRecord.date);
-  const [item, setItem] = useState(thisRecord.item);
-  const [amount, setAmount] = useState(thisRecord.amount);
-  const [description, setDescription] = useState(thisRecord.description);
+  const [date, setDate] = useState(record.date);
+  const [item, setItem] = useState(record.item);
+  const [amount, setAmount] = useState(record.amount);
+  const [description, setDescription] = useState(record.description);
   const navigate = useNavigate();
 
-  if (!thisRecord) {
-    return <div>조회할 수 없는 데이터입니다. ({thisRecordId}).</div>;
+  if (!record) {
+    return <div>조회할 수 없는 데이터입니다. ({recordId}).</div>;
   }
-
-  const handleUpdate = (newRecord) => {
-    const newRecords = records.map((record) =>
-      record.id === newRecord.id ? newRecord : record
-    );
-    setRecords([...newRecords]);
-    navigate("/assign-react-js/");
-  };
-
-  const handleDelete = (recordId) => {
-    const newRecords = records.filter((v) => v.id !== recordId);
-    setRecords([...newRecords]);
-    navigate("/assign-react-js/");
-  };
 
   return (
     <DetailPageWrapper>
@@ -45,16 +31,23 @@ export function DetailPage() {
         <Button
           text="수정"
           handleClick={() => {
-            handleUpdate({
-              ...thisRecord,
+            updateRecord({
+              ...record,
               date,
               item,
               amount,
               description,
             });
+            navigate("/assign-react-js/");
           }}
         />
-        <Button text="삭제" handleClick={() => handleDelete(thisRecordId)} />
+        <Button
+          text="삭제"
+          handleClick={() => {
+            deleteRecord(recordId);
+            navigate("/assign-react-js/");
+          }}
+        />
         <Button text="뒤로가기" handleClick={() => history.back()} />
       </div>
     </DetailPageWrapper>

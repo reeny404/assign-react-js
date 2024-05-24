@@ -16,7 +16,6 @@ export default function App() {
   useEffect(() => {
     LocalStorage.set(KEY._00_ACTIVE_WEEK, active);
   }, [active]);
-  console.log(active);
 
   return (
     <>

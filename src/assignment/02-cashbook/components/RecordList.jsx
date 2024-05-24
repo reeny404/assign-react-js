@@ -4,7 +4,7 @@ import { RecordsContext } from "../Week2";
 import { Record } from "./Record";
 
 export function RecordList({ month }) {
-  const [records] = useContext(RecordsContext) ?? [];
+  const { records } = useContext(RecordsContext);
   const list = month
     ? records.filter((record) => new Date(record.date).getMonth() + 1 === month)
     : records;
