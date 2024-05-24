@@ -1,7 +1,7 @@
-import { createContext, useState } from "react";
+import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
 import styled from "styled-components";
-import InitialRecords from "./InitialRecords";
+import store from "./redux/store";
 import "./reset.css";
 import router from "./routes/router";
 
@@ -13,34 +13,12 @@ const BodyWeek2 = styled.div`
   box-sizing: border-box;
 `;
 
-export const RecordsContext = createContext({});
-
 export function Week2() {
-  const [records, setRecords] = useState(InitialRecords);
-
-  const addRecord = (record) => {
-    setRecords([...records, record]);
-  };
-
-  const updateRecord = (newRecord) => {
-    setRecords([
-      ...records.map((record) =>
-        record.id === newRecord.id ? newRecord : record
-      ),
-    ]);
-  };
-
-  const deleteRecord = (recordId) => {
-    setRecords([...records.filter((v) => v.id !== recordId)]);
-  };
-
   return (
     <BodyWeek2 id="Week2">
-      <RecordsContext.Provider
-        value={{ records, addRecord, updateRecord, deleteRecord }}
-      >
+      <Provider store={store}>
         <RouterProvider router={router} />
-      </RecordsContext.Provider>
+      </Provider>
     </BodyWeek2>
   );
 }

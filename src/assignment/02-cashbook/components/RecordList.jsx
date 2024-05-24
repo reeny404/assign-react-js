@@ -1,10 +1,9 @@
-import { useContext } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { RecordsContext } from "../Week2";
 import { Record } from "./Record";
 
 export function RecordList({ month }) {
-  const { records } = useContext(RecordsContext);
+  const records = useSelector((state) => state.spendings);
   const list = month
     ? records.filter((record) => new Date(record.date).getMonth() + 1 === month)
     : records;
