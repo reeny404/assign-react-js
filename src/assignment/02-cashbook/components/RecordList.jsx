@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Record } from "./Record";
 
-export function RecordList({ records, month }) {
+export function RecordList({ records = [], month }) {
   const list = month
     ? records.filter((record) => new Date(record.date).getMonth() + 1 === month)
     : records;

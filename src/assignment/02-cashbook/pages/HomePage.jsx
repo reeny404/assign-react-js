@@ -71,7 +71,7 @@ export function HomePage({ records, handleAddRecord }) {
         </div>
       </SectionSelectingMonth>
       <SectionCashRecords>
-        <RecordList recods={records} month={month} />
+        <RecordList records={records} month={month} />
       </SectionCashRecords>
     </HomePageWrppaer>
   );
